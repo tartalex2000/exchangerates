@@ -2,7 +2,7 @@ exchangerates - Android/MVVM
 
 A sample forex application (exchangeratesapi.io) using MVVM + StateFlow + Hilt+ Sealed Class + Retrofit
 
-1) You can choose base currency (only EUR working for basic plan) and view exchange rates/
+1) You can choose base currency (only EUR working for basic plan) and view exchange rates
 2) Add currency to favourite by pressin "star" symbol.
 3) Only EUR working for basic plan
 
