@@ -2,13 +2,12 @@ package com.alex.exchangeratesapi.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.alex.exchangeratesapi.data.CurrencyApi
 import com.alex.exchangeratesapi.db.AppDatabase
 import com.alex.exchangeratesapi.db.RatesDao
-import com.alex.exchangeratesapi.main.DefaultMainRepository
-import com.alex.exchangeratesapi.main.MainRepository
+import com.alex.exchangeratesapi.repository.NetworkRepository
+import com.alex.exchangeratesapi.repository.MainRepository
+import com.alex.exchangeratesapi.repository.RoomRepository
 import com.alex.exchangeratesapi.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
@@ -17,8 +16,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -57,7 +54,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMainRepository(api: CurrencyApi) : MainRepository = DefaultMainRepository(api)
+    fun provideMainRepository(api: CurrencyApi) : MainRepository = NetworkRepository(
+        api
+    )
+    @Singleton
+    @Provides
+    fun provideRoomRepository(ratesDao: RatesDao) : RoomRepository = RoomRepository(ratesDao)
 
     @Singleton
     @Provides

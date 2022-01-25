@@ -1,4 +1,4 @@
-package com.alex.exchangeratesapi.main
+package com.alex.exchangeratesapi.repository
 
 import com.alex.exchangeratesapi.data.CurrencyApi
 import com.alex.exchangeratesapi.data.models.CurrencyResponse
@@ -6,7 +6,7 @@ import com.alex.exchangeratesapi.util.Resource
 import java.lang.Exception
 import javax.inject.Inject
 
-class DefaultMainRepository @Inject constructor(
+class NetworkRepository @Inject constructor(
     private val api : CurrencyApi
 ) : MainRepository {
 

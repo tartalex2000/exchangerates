@@ -7,8 +7,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -17,14 +15,11 @@ import androidx.lifecycle.lifecycleScope
 import com.alex.exchangeratesapi.R
 import com.alex.exchangeratesapi.data.models.Rate
 import com.alex.exchangeratesapi.databinding.FragmentHomeBinding
-import com.alex.exchangeratesapi.main.MainViewModel
+import com.alex.exchangeratesapi.viewmodel.MainViewModel
 import com.alex.exchangeratesapi.ui.adapter.diffold.OldRatesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.Comparator
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
@@ -55,7 +50,7 @@ companion object {
         val i:Rate=Rate(item,12.1,true)
 
         if (viewModel.favourtates.value.map{it.name}.contains(i.name)) {
-       //     item.isFavourite = false
+
             viewModel.delete(i)
         } else {
             i.isFavourite = true
@@ -65,10 +60,7 @@ companion object {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        /*     viewModel.conversion1.observe(viewLifecycleOwner, Observer{
 
-
-        })*/
         lifecycleScope.launchWhenStarted {
 
             viewModel.conversion.collect { event ->
@@ -77,7 +69,7 @@ companion object {
                     is MainViewModel.CurrencyEvent.Success -> {
                         _binding?.error?.visibility = View.INVISIBLE
                         _binding?.rvRates?.visibility = View.VISIBLE
-                      //  ratesAdapter.updateList(event.rates)
+
                     }
                     is MainViewModel.CurrencyEvent.Failiure -> {
                         _binding?.rvRates?.visibility = View.INVISIBLE
@@ -137,9 +129,7 @@ companion object {
         savedInstanceState: Bundle?
     ): View? {
 
-       /* viewModel =
-            ViewModelProvider(this).get(MainViewModel::class.java)
-*/
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -180,17 +170,7 @@ companion object {
             textView.setTextColor(Color.BLACK)
             textView
         }
-  /*      val inAnimation: Animation = AnimationUtils.loadAnimation(
-            context,
-            android.R.anim.fade_in
-        )
-        val outAnimation: Animation = AnimationUtils.loadAnimation(
-            context,
-            android.R.anim.fade_out
-        )
-        _binding?.sortname?.inAnimation = inAnimation
-        _binding?.sortname?.outAnimation = outAnimation*/
-//        album_artists=view.findViewById(R.id.album_artists)
+
         if (sortname!=null&& choosed_by_name== true) {
 
                 (_binding?.sortname?.nextView as TextView).setTextColor(resources.getColor(R.color.design_default_color_error))
@@ -223,12 +203,12 @@ companion object {
 
             if (sortname=="asc") {
                 sortname="desc"
-              //  sortvalue=null
+
                 ratesAdapter.updateList(ratesAdapter.new_rates.sortedByDescending { it.name })
             } else {
 
                 sortname="asc"
-             //   sortvalue=null
+
                 ratesAdapter.updateList(ratesAdapter.new_rates.sortedBy { it.name })
             }
 
@@ -243,12 +223,12 @@ companion object {
 
             if (sortvalue=="asc") {
                 sortvalue="desc"
-                //  sortvalue=null
+
                 ratesAdapter.updateList(ratesAdapter.new_rates.sortedByDescending { it.value })
             } else {
 
                 sortvalue="asc"
-                //   sortvalue=null
+
                 ratesAdapter.updateList(ratesAdapter.new_rates.sortedBy { it.value })
             }
 
