@@ -9,6 +9,9 @@ A sample forex application (exchangeratesapi.io) using MVVM + StateFlow + Hilt+ 
 API
 https://exchangeratesapi.io/
 
+ТЗ Отслеживание курса валют: 
+[Тестовое задание разработка Android (1).pdf](https://github.com/tartalex2000/exchangerates/files/7932492/Android.1.pdf)
+
 
 ![Screenshot_2022-01-24-15-03-37-104_com alex exchangeratesapi](https://user-images.githubusercontent.com/97987792/150780821-b3c7aa0b-ac56-4b74-9d8f-c88f6e8b05eb.jpg)
 ![Screenshot_2022-01-24-15-03-49-916_com alex exchangeratesapi](https://user-images.githubusercontent.com/97987792/150780823-9766d133-3178-49fe-9af8-1d4c94c5bd60.jpg)
