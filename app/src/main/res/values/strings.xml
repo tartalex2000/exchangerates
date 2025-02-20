@@ -4,9 +4,9 @@
     <string name="title_dashboard">Избранное</string>
     <string name="title_notifications">Notifications</string>
     <string-array name="historic_currencies">
+        <item>GBP</item>
         <item>USD</item>
-        <item>RON</item>
-        <item>BGN</item>
+        <item>CHF</item>
         <item>EUR</item>
     </string-array>
 

@@ -12,7 +12,7 @@ class NetworkRepository @Inject constructor(
 
     override suspend fun getRates(base: String, symbols:String?): Resource<CurrencyResponse> {
         return try {
-            val response = api.getRates(base, symbols)
+            val response = api.getRates(base,symbols)
             val result = response.body()
             if (response.isSuccessful && result != null) {
                 Resource.Success(result)

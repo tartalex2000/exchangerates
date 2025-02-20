@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.alex.exchangeratesapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

@@ -62,7 +62,7 @@ class RateViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             view.setBackgroundColor(
                 ContextCompat.getColor(
                     itemView.context,
-                    R.color.design_default_color_secondary_variant
+                    com.google.android.material.R.color.design_default_color_secondary_variant
                 )
             )
         else

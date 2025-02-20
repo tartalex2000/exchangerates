@@ -27,7 +27,6 @@ class MainViewModel @Inject constructor(
         object Empty : CurrencyEvent()
     }
 
-    @Inject  lateinit var database: AppDatabase
     private val  _conversion = MutableStateFlow<CurrencyEvent>(CurrencyEvent.Empty)
     val conversion : StateFlow<CurrencyEvent> = _conversion
 
@@ -84,8 +83,11 @@ class MainViewModel @Inject constructor(
     }
     fun observerFavourRates() {
         viewModelScope.launch(dispatcher.io) {
-            database.rateDao().getFavRates().collect {
-                _favourtates.value=ArrayList(it)
+         //
+            //   database.rateDao().getFavRates().collect {
+            roomrepository.getFavRates().collect{
+
+            _favourtates.value=ArrayList(it)
             }
         }
     }

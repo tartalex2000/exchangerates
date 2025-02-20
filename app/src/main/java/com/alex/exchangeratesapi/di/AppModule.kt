@@ -16,18 +16,24 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 import javax.inject.Singleton
 
 
-private const val BASE_URL = "http://api.exchangeratesapi.io/v1/"
+private const val BASE_URL = "https://api.exchangeratesapi.io/v1/"
 
+private const val BASE_URL1 = "https://openexchangerates.org/api/"
+
+private const val BASE_URL2 = "https://api.currencyfreaks.com/v2.0/rates/"
+
+private const val BASE_URL3 = "https://api.frankfurter.dev/v1/"
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    lateinit var database: AppDatabase
 
     @Singleton
     @Provides
@@ -45,13 +51,21 @@ object AppModule {
     }
     @Singleton
     @Provides
-    fun provideCurrencyApi(): CurrencyApi = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(CurrencyApi::class.java)
+    fun provideCurrencyApi(): CurrencyApi {
 
+        val httpLogInterceptor = HttpLoggingInterceptor()
+        httpLogInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client = OkHttpClient().newBuilder()
+                    .addInterceptor(httpLogInterceptor)
+                    .build()
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL3)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(CurrencyApi::class.java)
 
+    }
     @Singleton
     @Provides
     fun provideMainRepository(api: CurrencyApi) : MainRepository = NetworkRepository(

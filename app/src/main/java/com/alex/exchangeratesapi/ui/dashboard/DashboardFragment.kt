@@ -141,7 +141,7 @@ class DashboardFragment : Fragment() {
 
         if (sortname !=null&& choosed_by_name == true) {
 
-            (_binding?.sortname?.nextView as TextView).setTextColor(resources.getColor(R.color.design_default_color_error))
+            (_binding?.sortname?.nextView as TextView).setTextColor(resources.getColor(com.google.android.material.R.color.design_default_color_error))
 
             if (sortname == "asc")  {
                 _binding?.sortname?.setText("asc")
@@ -153,7 +153,7 @@ class DashboardFragment : Fragment() {
             _binding?.sortvalue?.setText(sortvalue)
         } else {
 
-            (_binding?.sortvalue?.nextView as TextView).setTextColor(resources.getColor(R.color.design_default_color_error))
+            (_binding?.sortvalue?.nextView as TextView).setTextColor(resources.getColor(com.google.android.material.R.color.design_default_color_error))
 
             if (sortvalue == "asc")  {
                 _binding?.sortvalue?.setText("asc")
@@ -166,7 +166,7 @@ class DashboardFragment : Fragment() {
         }
         _binding?.sortname?.setOnClickListener{
             choosed_by_name =true
-            (_binding?.sortname?.nextView as TextView).setTextColor(resources.getColor(R.color.design_default_color_error))
+            (_binding?.sortname?.nextView as TextView).setTextColor(resources.getColor(com.google.android.material.R.color.design_default_color_error))
             (_binding?.sortvalue?.nextView as TextView).setTextColor(resources.getColor(R.color.black))
 
             if (sortname =="asc") {
@@ -186,7 +186,7 @@ class DashboardFragment : Fragment() {
 
         _binding?.sortvalue?.setOnClickListener{
             choosed_by_name =false
-            (_binding?.sortvalue?.nextView as TextView).setTextColor(resources.getColor(R.color.design_default_color_error))
+            (_binding?.sortvalue?.nextView as TextView).setTextColor(resources.getColor(com.google.android.material.R.color.design_default_color_error))
             (_binding?.sortname?.nextView as TextView).setTextColor(resources.getColor(R.color.black))
 
             if (sortvalue =="asc") {
